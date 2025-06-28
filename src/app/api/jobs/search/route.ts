@@ -1,9 +1,9 @@
 import { formatEmploymentType, formatLocation, searchJobs, type JobSearchParams } from '@/lib/jsearch'
 import {
-    canUserSearch,
-    getAllUserJobs,
-    incrementUserSearch,
-    saveUserJobSearch
+  canUserSearch,
+  getAllUserJobs,
+  incrementUserSearch,
+  saveUserJobSearch
 } from '@/lib/user-quota'
 import { NextRequest, NextResponse } from 'next/server'
 
