@@ -1,11 +1,11 @@
-# 🤖 Hodor
-**AI-Powered Job Search That Actually Works**
+# Hodor
+**AI Powered Job Search Engine**
 
 Transform your job search from weeks of effort into a 5-minute setup. Hodor finds perfect job matches, builds optimized resumes, and applies automatically while you focus on what matters most - landing interviews.
 
 ---
 
-## ✨ Why Hodor?
+##  Why Hodor?
 
 **Traditional Job Search:*
 - Spend 20+ hours per week searching and applying
@@ -27,7 +27,7 @@ Transform your job search from weeks of effort into a 5-minute setup. Hodor find
 Simply describe what you're looking for in natural language:
 
 ```
-"I'm looking for a full-time job as a software engineer with 3 years 
+"I'm looking for a full time job as a software engineer with 3 years 
 experience, preferably remote with salary around 120k"
 ```
 
@@ -57,7 +57,7 @@ experience, preferably remote with salary around 120k"
 
 ---
 
-## 🎯 Perfect For
+## Perfect For
 
 - **Software Engineers** looking for their next role
 - **Product Managers** seeking new opportunities  
@@ -80,33 +80,6 @@ experience, preferably remote with salary around 120k"
 - Supabase for database and auth
 - OpenAI for intelligent matching
 - Playwright for automated applications
-
-**Infrastructure:**
-- Vercel for lightning-fast hosting
-- GitHub Actions for seamless deployments
-- Upstash Redis for caching
-- Advanced monitoring and analytics
-
----
-
-## 📊 Success Stories
-
-> *"I got 7 interview requests in the first week. Hodor found opportunities I never would have discovered on my own."*  
-> — **Manan**, Senior Developer
-
-> *"The resume optimization is incredible. My response rate went from 2% to 18% immediately."*  
-> — **Aditi**, Product Manager  
-
-> *"Finally, a job search tool that actually saves time instead of wasting it."*  
-> — **Dhruv**, UX Designer
-
-> *"Hodor automated my entire job search. I applied to 50 jobs in one afternoon and got 3 interviews by the end of the week."*  
-> — **Tanya**, Data Scientist
-
-> *"The AI resume builder created a better resume than I could ever write myself. The results speak for themselves."*  
-> — **Shruti**, Product Designer
-
----
 
 ## 🚀 Getting Started
 
@@ -151,18 +124,6 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 OPENAI_API_KEY=your_openai_api_key
 NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000
-```
-
-### Available Scripts
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run test         # Run test suite
-npm run lint         # Lint code
-npm run type-check   # TypeScript checking
-```
-
 ### Project Structure
 ```
 hodor/
