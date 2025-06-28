@@ -1,9 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const router = useRouter()
   
   // Form state for structured job search
   const [jobType, setJobType] = useState("full time job")
@@ -76,17 +78,18 @@ export default function Home() {
     if (!role.trim()) return
     
     setIsAnalyzing(true)
-    // Simulate AI processing
+    
+    // Store preferences in localStorage
+    localStorage.setItem('jobType', jobType)
+    localStorage.setItem('role', role)
+    localStorage.setItem('experience', experience)
+    localStorage.setItem('location', location)
+    localStorage.setItem('salary', salary)
+    
+    // Simulate AI processing then redirect to sign-in
     setTimeout(() => {
       setIsAnalyzing(false)
-      // TODO: Redirect to dashboard/results with structured data
-      console.log('Job Search Parameters:', {
-        jobType,
-        role,
-        experience,
-        location,
-        salary
-      })
+      router.push('/signin')
     }, 2000)
   }
 
@@ -215,8 +218,12 @@ export default function Home() {
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between p-6 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30">
-            <span className="text-white font-bold text-xl">H</span>
+          <div className="w-10 h-10 flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Hodor Logo" 
+              className="w-10 h-10 object-contain"
+            />
           </div>
           <span className="text-2xl font-bold text-white">Hodor</span>
         </div>
