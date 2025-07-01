@@ -41,7 +41,20 @@ export async function POST(request: NextRequest) {
       numPages: 1
     }
 
-    // Check if user has existing jobs for this month first
+    // Check user's quota for new searches FIRST
+    let quotaCheck
+    try {
+      quotaCheck = await canUserSearch(userId)
+      console.log('Quota check:', quotaCheck)
+    } catch (error) {
+      console.log('Database not ready yet, allowing search:', error)
+      // If quota tables don't exist, allow the search (fallback for initial setup)
+      quotaCheck = { allowed: true, quota: null, remaining: 3 }
+    }
+    
+    const { allowed, quota, remaining } = quotaCheck
+
+    // Check if user has existing jobs for this month
     let existingJobs: any[] = []
     try {
       existingJobs = await getAllUserJobs(userId)
@@ -50,8 +63,9 @@ export async function POST(request: NextRequest) {
       console.log('Database not ready yet, proceeding with fresh search:', error)
     }
     
-    if (existingJobs.length > 0) {
-      // User has existing jobs, return them with enhanced scoring
+    // If user has reached quota limit AND has existing jobs, return existing jobs
+    if (!allowed && quota && existingJobs.length > 0) {
+      // User has exhausted quota, return existing jobs with enhanced scoring
       const enhancedJobs = existingJobs.map((job: any) => ({
         ...job,
         matchScore: calculateMatchScore(job, { jobType, role, experience, location, salary }),
@@ -69,23 +83,11 @@ export async function POST(request: NextRequest) {
           query: searchParams.query,
           location: searchParams.location,
           from_user_collection: true,
-          message: "Showing jobs from your personal collection this month"
+          remaining_searches: 0,
+          message: `You've used all ${quota.max_searches || 3} searches for this month. Showing jobs from your personal collection. Your searches will reset next month!`
         }
       })
     }
-
-    // Check user's quota for new searches
-    let quotaCheck
-    try {
-      quotaCheck = await canUserSearch(userId)
-      console.log('Quota check:', quotaCheck)
-    } catch (error) {
-      console.log('Database not ready yet, allowing search:', error)
-      // If quota tables don't exist, allow the search (fallback for initial setup)
-      quotaCheck = { allowed: true, quota: null, remaining: 3 }
-    }
-    
-    const { allowed, quota, remaining } = quotaCheck
     
     if (!allowed && quota) {
       return NextResponse.json(

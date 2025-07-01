@@ -55,3 +55,6 @@ temp/
 
 # Documentation
 /docs
+development.md
+development_v2.md
+setup.sh

@@ -80,6 +80,7 @@ export default function Home() {
     setIsAnalyzing(true)
     
     // Store preferences in localStorage
+    console.log('Storing preferences:', { jobType, role, experience, location, salary }) // Debug log
     localStorage.setItem('jobType', jobType)
     localStorage.setItem('role', role)
     localStorage.setItem('experience', experience)
@@ -229,10 +230,16 @@ export default function Home() {
         </div>
         
         <div className="flex items-center gap-4">
-          <button className="text-gray-400 hover:text-red-400 transition-colors">
+          <button 
+            onClick={() => router.push('/signin')}
+            className="text-gray-400 hover:text-red-400 transition-colors"
+          >
             Log in
           </button>
-          <button className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-xl font-medium hover:from-red-600 hover:to-red-700 transition-all shadow-lg shadow-red-500/30">
+          <button 
+            onClick={() => router.push('/signin')}
+            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-xl font-medium hover:from-red-600 hover:to-red-700 transition-all shadow-lg shadow-red-500/30"
+          >
             Sign up
           </button>
         </div>
